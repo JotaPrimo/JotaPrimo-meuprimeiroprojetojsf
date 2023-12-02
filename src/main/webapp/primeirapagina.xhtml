@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Olá JSF</title>
+	<title>Cadastro de usuÃ¡rio</title>
 </h:head>
 
 <h:body>
-
-	<h:form>
-		<h:outputLabel value="Nome" />
-		<h:inputText value="#{pessoaBean.nome}" />
+	<h:form id="formPessoa" enctype="multipart/form-data">
+		<h:outputLabel for="nome" value="Nome"/>
+		<h:inputText id="nome" value="#{pessoaBean.pessoa.nome}" rendered="true" />
 		
 		<br/>
 		
-		<h:outputLabel value="Sorenome" />
-		<h:inputText value="#{pessoaBean.sobrenome}" />
+		<h:outputLabel for="sobrenome" value="Sobrenome"/>
+		<h:inputText id="sobrenome" value="#{pessoaBean.pessoa.sobrenome}" rendered="true" />
 		
 		<br/>
 		
-		<h:outputLabel value="Nome Completo" />
-		<h:inputText value="#{pessoaBean.nomeCompleto}" />
+		<h:outputLabel for="idade" value="Idade"/>
+		<h:inputText id="idade" value="#{pessoaBean.pessoa.idade}" rendered="true" />
 		
-		<h:commandButton action="#{pessoaBean.mostrarNomeCompleto}" value="Salvar" />
-		
+		<br/>	
+			
+		<h:commandButton value="Salvar" action="#{pessoaBean.salvar}" />
 	</h:form>
-
 </h:body>
 
 </html>
+

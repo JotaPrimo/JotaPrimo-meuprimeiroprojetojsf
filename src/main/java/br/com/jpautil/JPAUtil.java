@@ -8,9 +8,9 @@ import javax.persistence.Persistence;
 
 public class JPAUtil {
 
-	private EntityManagerFactory factory = null;
+	private static EntityManagerFactory factory = null;
 
-	public JPAUtil() {
+	static {
 		if (factory == null) {
 			factory = Persistence
 					.createEntityManagerFactory("meuprimeiroprojetojsf");
@@ -18,7 +18,7 @@ public class JPAUtil {
 	}
 
 
-	public EntityManager getEntityManager() {
+	public static EntityManager getEntityManager() {
 		return factory.createEntityManager();
 	}
 	
