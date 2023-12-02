@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"	
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
@@ -12,31 +12,42 @@
 
 <h:body>
 	<h:form id="formPessoa" enctype="multipart/form-data">
-		<h:outputLabel for="id" value="Id" />
-		<h:outputText id="id" value="#{pessoaBean.pessoa.id}" />
 
-		<br />
-		<h:outputLabel for="nome" value="Nome" />
-		<h:inputText id="nome" value="#{pessoaBean.pessoa.nome}"
-			required="true" />
+		<h1>Olá JSF</h1>
 
-		<br />
+		<h:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="Cadastro com JSF" />
+			</f:facet>
 
-		<h:outputLabel for="sobrenome" value="Sobrenome" />
-		<h:inputText id="sobrenome" value="#{pessoaBean.pessoa.sobrenome}"
-			required="true" />
+			<h:outputLabel for="id" value="Id" />
+			<h:outputText id="id" value="#{pessoaBean.pessoa.id}" />
 
-		<br />
 
-		<h:outputLabel for="idade" value="Idade" />
-		<h:inputText id="idade" value="#{pessoaBean.pessoa.idade}"
-			required="true" />
+			<h:outputLabel for="nome" value="Nome" />
+			<h:inputText id="nome" value="#{pessoaBean.pessoa.nome}"
+				required="true" />
 
-		<br />
 
-		<h:commandButton value="Novo" action="#{pessoaBean.novo}" />
-		<h:commandButton value="Remover" action="#{pessoaBean.remover}" />
-		<h:commandButton value="Salvar" action="#{pessoaBean.salvar}" />
+			<h:outputLabel for="sobrenome" value="Sobrenome" />
+			<h:inputText id="sobrenome" value="#{pessoaBean.pessoa.sobrenome}"
+				required="true" />
+
+
+
+			<h:outputLabel for="idade" value="Idade" />
+			<h:inputText id="idade" value="#{pessoaBean.pessoa.idade}"
+				required="true" />
+
+			<h:outputLabel value="Ações" />
+
+			<h:panelGroup>
+				<h:commandButton value="Novo" action="#{pessoaBean.novo}" />
+				<h:commandButton value="Remover" action="#{pessoaBean.remover}" />
+				<h:commandButton value="Salvar" action="#{pessoaBean.salvar}" />
+			</h:panelGroup>
+
+		</h:panelGrid>
 	</h:form>
 
 	<br />
@@ -63,15 +74,17 @@
 				<f:facet name="header">Sobrenome da pessoa</f:facet>
 				<h:outputText value="#{pessoa.sobrenome}" />
 			</h:column>
-			
+
 			<h:column>
 				<f:facet name="header">Ações</f:facet>
 				<h:commandLink value="Editar">
-					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pessoa}"
+						target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
 				</h:commandLink>
 				 &nbsp;
 				<h:commandLink value="Deletar" action="#{pessoaBean.remover}">
-					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
+					<f:setPropertyActionListener value="#{pessoa}"
+						target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
 				</h:commandLink>
 			</h:column>
 
