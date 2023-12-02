@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@org.hibernate.annotations.Proxy(lazy = false)
 @Entity
 public class Pessoa implements Serializable {
 
