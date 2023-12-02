@@ -70,7 +70,7 @@
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
 				</h:commandLink>
 				 &nbsp;
-				<h:commandLink value="Deletar">
+				<h:commandLink value="Deletar" action="#{pessoaBean.remover}">
 					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
 				</h:commandLink>
 			</h:column>

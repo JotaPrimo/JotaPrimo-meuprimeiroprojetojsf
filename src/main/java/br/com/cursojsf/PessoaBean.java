@@ -35,6 +35,8 @@ public class PessoaBean implements Serializable {
 	
 	public String remover() {	
 		pessoaService.delete(pessoa);
+		pessoa = new Pessoa();
+		carregarPessoas();
 		return "";
 	}
 	
