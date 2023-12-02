@@ -14,8 +14,17 @@
 		<h:outputLabel value="Nome" />
 		<h:inputText value="#{pessoaBean.nome}" />
 		
+		<br/>
+		
 		<h:outputLabel value="Sorenome" />
 		<h:inputText value="#{pessoaBean.sobrenome}" />
+		
+		<br/>
+		
+		<h:outputLabel value="Nome Completo" />
+		<h:inputText value="#{pessoaBean.nomeCompleto}" />
+		
+		<h:commandButton action="#{pessoaBean.mostrarNomeCompleto}" value="Salvar" />
 		
 	</h:form>
 

@@ -4,8 +4,14 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "pessoaBean")
 public class PessoaBean {
+	
 	private String nome;
 	private String sobrenome;
+	private String nomeCompleto;
+	
+	public void mostrarNomeCompleto() {
+		setNomeCompleto(nome +" "+ sobrenome);
+	}
 	
 	public String getNome() {
 		return nome;
@@ -20,5 +26,12 @@ public class PessoaBean {
 		this.sobrenome = sobrenome;
 	}
 	
+	public String getNomeCompleto() {
+		return nomeCompleto;
+	}
+	
+	public void setNomeCompleto(String nomeCompleto) {
+		this.nomeCompleto = nomeCompleto;
+	}
 	
 }
