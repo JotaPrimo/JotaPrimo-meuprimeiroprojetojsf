@@ -23,8 +23,12 @@ public class PessoaBean implements Serializable {
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	
 	public String salvar() {
-		pessoa = daoGeneric.merge(pessoa);
-		pessoa = new Pessoa();
+		pessoa = daoGeneric.merge(pessoa);		
+		return "";
+	}
+	
+	public String novo() {
+		pessoa = new Pessoa();	
 		return "";
 	}
 	

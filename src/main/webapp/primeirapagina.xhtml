@@ -13,21 +13,29 @@
 
 <h:body>
 	<h:form id="formPessoa" enctype="multipart/form-data">
-		<h:outputLabel for="nome" value="Nome"/>
-		<h:inputText id="nome" value="#{pessoaBean.pessoa.nome}" rendered="true" />
-		
-		<br/>
-		
-		<h:outputLabel for="sobrenome" value="Sobrenome"/>
-		<h:inputText id="sobrenome" value="#{pessoaBean.pessoa.sobrenome}" rendered="true" />
-		
-		<br/>
-		
-		<h:outputLabel for="idade" value="Idade"/>
-		<h:inputText id="idade" value="#{pessoaBean.pessoa.idade}" rendered="true" />
-		
-		<br/>	
-			
+		<h:outputLabel for="id" value="Id" />
+		<h:outputText id="id" value="#{pessoaBean.pessoa.id}" />
+
+		<br />
+		<h:outputLabel for="nome" value="Nome" />
+		<h:inputText id="nome" value="#{pessoaBean.pessoa.nome}"
+			required="true" />
+
+		<br />
+
+		<h:outputLabel for="sobrenome" value="Sobrenome" />
+		<h:inputText id="sobrenome" value="#{pessoaBean.pessoa.sobrenome}"
+			required="true" />
+
+		<br />
+
+		<h:outputLabel for="idade" value="Idade" />
+		<h:inputText id="idade" value="#{pessoaBean.pessoa.idade}"
+			required="true" />
+
+		<br />
+
+		<h:commandButton value="Novo" action="#{pessoaBean.novo}" />
 		<h:commandButton value="Salvar" action="#{pessoaBean.salvar}" />
 	</h:form>
 </h:body>
