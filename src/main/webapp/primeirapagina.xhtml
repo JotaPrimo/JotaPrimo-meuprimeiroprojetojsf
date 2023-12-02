@@ -63,6 +63,17 @@
 				<f:facet name="header">Sobrenome da pessoa</f:facet>
 				<h:outputText value="#{pessoa.sobrenome}" />
 			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Ações</f:facet>
+				<h:commandLink value="Editar">
+					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
+				</h:commandLink>
+				 &nbsp;
+				<h:commandLink value="Deletar">
+					<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
+				</h:commandLink>
+			</h:column>
 
 		</h:dataTable>
 
