@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:h="http://java.sun.com/jsf/html"	
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
@@ -36,8 +35,39 @@
 		<br />
 
 		<h:commandButton value="Novo" action="#{pessoaBean.novo}" />
+		<h:commandButton value="Remover" action="#{pessoaBean.remover}" />
 		<h:commandButton value="Salvar" action="#{pessoaBean.salvar}" />
 	</h:form>
+
+	<br />
+
+	<h:form id="formTable">
+		<h:dataTable value="#{pessoaBean.pessoas}" var="pessoa" border="3"
+			cellpadding="6">
+
+			<f:facet name="header">
+	     	   Lista usuário cadastrados
+	     	</f:facet>
+
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{pessoa.id}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Nome da pessoa</f:facet>
+				<h:outputText value="#{pessoa.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Sobrenome da pessoa</f:facet>
+				<h:outputText value="#{pessoa.sobrenome}" />
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+
 </h:body>
 
 </html>
