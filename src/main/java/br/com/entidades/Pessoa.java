@@ -27,6 +27,8 @@ public class Pessoa implements Serializable {
 	
 	private String[] framweorks;
 	
+	private Boolean ativo;
+	
 
 	public Pessoa() {
 
@@ -39,6 +41,8 @@ public class Pessoa implements Serializable {
 	public String[] getFramweorks() {
 		return framweorks;
 	}
+	
+	
 
 	public Long getId() {
 		return id;
@@ -78,6 +82,16 @@ public class Pessoa implements Serializable {
 	
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+	
+	
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override
