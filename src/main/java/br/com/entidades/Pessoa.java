@@ -23,9 +23,21 @@ public class Pessoa implements Serializable {
 
 	private Integer idade;
 	
+	private String sexo;
+	
+	private String[] framweorks;
+	
 
 	public Pessoa() {
 
+	}
+	
+	public void setFramweorks(String[] framweorks) {
+		this.framweorks = framweorks;
+	}
+	
+	public String[] getFramweorks() {
+		return framweorks;
 	}
 
 	public Long getId() {
@@ -60,7 +72,13 @@ public class Pessoa implements Serializable {
 		this.idade = idade;
 	}
 
+	public String getSexo() {
+		return sexo;
+	}
 	
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
 
 	@Override
 	public int hashCode() {

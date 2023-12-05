@@ -14,8 +14,9 @@
 	<h:form id="formPessoa" enctype="multipart/form-data">
 
 		<h1>Olá JSF</h1>
-		
-		<h:graphicImage height="50" width="50" library="imagens" name="java-runtime.jpg" />
+
+		<h:graphicImage height="50" width="50" library="imagens"
+			name="java-runtime.jpg" />
 
 		<h:panelGrid columns="2">
 			<f:facet name="header">
@@ -38,8 +39,26 @@
 
 
 			<h:outputLabel for="idade" value="Idade" />
-			<h:inputText id="idade" value="#{pessoaBean.pessoa.idade}"
+			<h:inputText id="idade" type="number" value="#{pessoaBean.pessoa.idade}"
 				required="true" />
+
+			<h:outputLabel for="sobrenome" value="Sobrenome" />
+			<h:selectOneMenu id="sexo" value="#{pessoaBean.pessoa.sexo}">
+					<f:selectItem itemValue="" itemLabel="[--Selecione--]" noSelectionOption="true" />
+					<f:selectItem itemValue="M" itemLabel="Masculino" />
+					<f:selectItem itemValue="F" itemLabel="Feminino" />
+			</h:selectOneMenu>
+			
+			<h:outputLabel value="Framweorks" />
+			<h:selectManyMenu style="height:150px;" id="framweorks" value="#{pessoaBean.pessoa.framweorks}">
+					<f:selectItem itemValue="" itemLabel="[--Selecione--]" noSelectionOption="true" />
+					<f:selectItem itemValue="Hibernate" />
+					<f:selectItem itemValue="Spring MVC" />
+					<f:selectItem itemValue="Laravel" />
+					<f:selectItem itemValue="JPA" />
+					<f:selectItem itemValue="JSF" />
+					<f:selectItem itemValue="Primefaces" />
+			</h:selectManyMenu>
 
 			<h:outputLabel value="Ações" />
 
