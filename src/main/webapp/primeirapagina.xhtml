@@ -114,7 +114,7 @@
 						target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
 				</h:commandLink>
 				 &nbsp;
-				<h:commandLink value="Deletar" action="#{pessoaBean.remover}">
+				<h:commandLink value="Deletar" action="#{pessoaBean.remover}" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
 					<f:setPropertyActionListener value="#{pessoa}"
 						target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
 				</h:commandLink>

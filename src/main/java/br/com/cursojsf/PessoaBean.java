@@ -10,7 +10,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -46,6 +45,19 @@ public class PessoaBean implements Serializable {
 
 	public String editar() {
 		return "";
+	}
+	
+	public boolean permiteAcesso(String acesso) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		Pessoa pessoaUser = (Pessoa) externalContext.getSessionMap().get(
+				"usuarioLogado");
+		
+		System.out.println("Usuario logado : " + pessoaUser.getLogin());
+		System.out.println("Usuario logado : " + pessoaUser.getNome());
+		System.out.println("getPerfilUser  : " + pessoaUser.getPerfilUser());
+
+		return pessoaUser.getPerfilUser().equals(acesso);
 	}
 
 	public String logar() {
