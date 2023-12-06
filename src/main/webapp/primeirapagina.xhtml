@@ -11,9 +11,7 @@
 </h:head>
 
 <h:body>
-	<h:form id="formPessoa" enctype="multipart/form-data">
-
-		<h1>Olá JSF</h1>
+	<h:form id="formPessoa" enctype="multipart/form-data">		
 
 		<h:graphicImage height="50" width="50" library="imagens"
 			name="java-runtime.jpg" />
@@ -26,17 +24,13 @@
 			<h:outputLabel for="id" value="Id" />
 			<h:outputText id="id" value="#{pessoaBean.pessoa.id}" />
 
-
 			<h:outputLabel for="nome" value="Nome" />
 			<h:inputText id="nome" value="#{pessoaBean.pessoa.nome}"
 				required="true" />
 
-
 			<h:outputLabel for="sobrenome" value="Sobrenome" />
 			<h:inputText id="sobrenome" value="#{pessoaBean.pessoa.sobrenome}"
 				required="true" />
-
-
 
 			<h:outputLabel for="idade" value="Idade" />
 			<h:inputText id="idade" type="number" value="#{pessoaBean.pessoa.idade}"
@@ -62,14 +56,26 @@
 
 			<h:outputLabel value="Ativo" />
 			<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}" />
-
+			
+			<h:outputLabel value="Login" />
+			<h:inputText value="#{pessoaBean.pessoa.login}" required="true" />
+			
+			<h:outputLabel value="Senha" />
+			<h:inputSecret value="#{pessoaBean.pessoa.senha}" required="true" />
+			
+			<h:outputLabel for="perfilUser" value="Perfil User" />
+			<h:selectOneMenu id="perfilUser" value="#{pessoaBean.pessoa.perfilUser}">
+					<f:selectItem itemValue="" itemLabel="[--Selecione--]" noSelectionOption="true" />
+					<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Admin" />
+					<f:selectItem itemValue="SECRETARIO" itemLabel="Secretário" />
+			</h:selectOneMenu>
 
 			<h:outputLabel value="Ações" />
 
 			<h:panelGroup>
 				<h:commandButton value="Novo" action="#{pessoaBean.novo}" image="/resources/imagens/salvar.png" style="height: 30px;" />
-				<h:commandButton value="Remover" action="#{pessoaBean.remover}" />
-				<h:commandButton value="Salvar" action="#{pessoaBean.salvar}" />
+				<h:commandButton value="Remover" action="#{pessoaBean.remover}"  image="/resources/imagens/deletar.png" style="height: 30px;"/>
+				<h:commandButton value="Salvar" action="#{pessoaBean.salvar}"  image="/resources/imagens/editar.jpg" style="height: 30px;"/>
 				<h:commandButton value="Limpar" type="reset" />
 			</h:panelGroup>
 
@@ -83,7 +89,7 @@
 			cellpadding="6">
 
 			<f:facet name="header">
-	     	   Lista usuário cadastrados
+	     	   Lista usuários cadastrados
 	     	</f:facet>
 
 			<h:column>
@@ -92,12 +98,12 @@
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">Nome da pessoa</f:facet>
+				<f:facet name="header">Nome</f:facet>
 				<h:outputText value="#{pessoa.nome}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">Sobrenome da pessoa</f:facet>
+				<f:facet name="header">Sobrenome</f:facet>
 				<h:outputText value="#{pessoa.sobrenome}" />
 			</h:column>
 
