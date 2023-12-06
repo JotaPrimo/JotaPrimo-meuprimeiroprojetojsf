@@ -11,7 +11,16 @@
 </h:head>
 
 <h:body>
-	<h:form id="formPessoa" enctype="multipart/form-data">		
+
+	<h:form id="formMenu">
+		<h:commandLink value="Administração" action="lancamento" style="margin-left:1cm;" />
+		<h:commandLink value="Lançamentos" action="primeirapagina" style="margin-left:1cm;" />
+		<h:commandLink value="Trocar usuário" action="index" style="margin-left:1cm;" />
+	</h:form>
+	
+	<br/>
+
+	<h:form id="formPessoa" enctype="multipart/form-data" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">		
 
 		<h:graphicImage height="50" width="50" library="imagens"
 			name="java-runtime.jpg" />
