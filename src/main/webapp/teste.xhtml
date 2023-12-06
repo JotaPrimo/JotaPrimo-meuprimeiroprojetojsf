@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Cadastro de usuário</title>
+</h:head>
+
+<h:body>
+	<h:form id="formPessoa" enctype="multipart/form-data">		
+
+		<h:graphicImage height="50" width="50" library="imagens"
+			name="java-runtime.jpg" />
+
+		<h:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="Cadastro com JSF" />
+			</f:facet>
+
+			<h:outputLabel for="id" value="Id" />
+			<h:outputText id="id" value="#{pessoaBean.pessoa.id}" />
+
+			<h:outputLabel for="nome" value="Nome" />
+			<h:inputText id="nome" value="#{pessoaBean.pessoa.nome}"
+				required="true" />
+
+			<h:outputLabel for="sobrenome" value="Sobrenome" />
+			<h:inputText id="sobrenome" value="#{pessoaBean.pessoa.sobrenome}"
+				required="true" />
+
+			<h:outputLabel for="idade" value="Idade" />
+			<h:inputText id="idade" type="number" value="#{pessoaBean.pessoa.idade}"
+				required="true" />
+
+			<h:outputLabel for="sobrenome" value="Sobrenome" />
+			<h:selectOneMenu id="sexo" value="#{pessoaBean.pessoa.sexo}">
+					<f:selectItem itemValue="" itemLabel="[--Selecione--]" noSelectionOption="true" />
+					<f:selectItem itemValue="M" itemLabel="Masculino" />
+					<f:selectItem itemValue="F" itemLabel="Feminino" />
+			</h:selectOneMenu>
+			
+			<h:outputLabel value="Framweorks" />
+			<h:selectManyMenu style="height:150px;" id="framweorks" value="#{pessoaBean.pessoa.framweorks}">
+					<f:selectItem itemValue="" itemLabel="[--Selecione--]" noSelectionOption="true" />
+					<f:selectItem itemValue="Hibernate" />
+					<f:selectItem itemValue="Spring MVC" />
+					<f:selectItem itemValue="Laravel" />
+					<f:selectItem itemValue="JPA" />
+					<f:selectItem itemValue="JSF" />
+					<f:selectItem itemValue="Primefaces" />
+			</h:selectManyMenu>
+
+			<h:outputLabel value="Ativo" />
+			<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}" />
+			
+			<h:outputLabel value="Login" />
+			<h:inputText value="#{pessoaBean.pessoa.login}" required="true" />
+			
+			<h:outputLabel value="Senha" />
+			<h:inputSecret value="#{pessoaBean.pessoa.senha}" required="true" />
+			
+			<h:outputLabel for="perfilUser" value="Perfil User" />
+			<h:selectOneMenu id="perfilUser" value="#{pessoaBean.pessoa.perfilUser}">
+					<f:selectItem itemValue="" itemLabel="[--Selecione--]" noSelectionOption="true" />
+					<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Admin" />
+					<f:selectItem itemValue="SECRETARIO" itemLabel="Secretário" />
+			</h:selectOneMenu>
+
+			<h:outputLabel value="Ações" />
+
+			<h:panelGroup>
+				<h:commandButton value="Novo" action="#{pessoaBean.novo}" image="/resources/imagens/salvar.png" style="height: 30px;" />
+				<h:commandButton value="Remover" action="#{pessoaBean.remover}"  image="/resources/imagens/deletar.png" style="height: 30px;"/>
+				<h:commandButton value="Salvar" action="#{pessoaBean.salvar}"  image="/resources/imagens/editar.jpg" style="height: 30px;"/>
+				<h:commandButton value="Limpar" type="reset" />
+			</h:panelGroup>
+
+		</h:panelGrid>
+	</h:form>
+
+	<br />
+
+	<h:form id="formTable">
+		<h:dataTable value="#{pessoaBean.pessoas}" var="pessoa" border="3"
+			cellpadding="6">
+
+			<f:facet name="header">
+	     	   Lista usuários cadastrados
+	     	</f:facet>
+
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{pessoa.id}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{pessoa.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Sobrenome</f:facet>
+				<h:outputText value="#{pessoa.sobrenome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Ações</f:facet>
+				<h:commandLink value="Editar">
+					<f:setPropertyActionListener value="#{pessoa}"
+						target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
+				</h:commandLink>
+				 &nbsp;
+				<h:commandLink value="Deletar" action="#{pessoaBean.remover}">
+					<f:setPropertyActionListener value="#{pessoa}"
+						target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+
+</h:body>
+
+</html>
+

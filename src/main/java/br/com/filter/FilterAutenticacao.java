@@ -34,19 +34,21 @@ public class FilterAutenticacao implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		
-		Pessoa usuarioLogado = (Pessoa) session.getAttribute("usuarioLogado");
+		 Pessoa usuarioLogado = (Pessoa) session.getAttribute("usuarioLogado");
 		
 		String url = req.getServletPath();
 		
 		if (!url.equalsIgnoreCase("index.jsf") && usuarioLogado == null){
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/faces/index.xhtml");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsf");
 			dispatcher.forward(request, response);
 			return;
 		}else {
 			// executa as ações do request e do response
 			chain.doFilter(request, response);
-		}					
-		// chain.doFilter(request, response);
+		}	
+		
+		System.out.println("chain do filter");
+		 chain.doFilter(request, response);
 	}
 
 	@Override
