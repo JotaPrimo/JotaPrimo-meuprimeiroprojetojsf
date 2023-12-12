@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Login</title>
+</h:head>
+
+<h:body>
+	<h:form id="formMenu">
+		<h:commandLink value="Administração" action="lancamentos"
+			style="margin-left:1cm;" />
+		<h:commandLink value="Lançamentos" action="primeirapagina"
+			style="margin-left:1cm;" />
+		<h:commandLink value="Trocar usuário" action="index"
+			style="margin-left:1cm;" />
+	</h:form>
+
+	<h1>Lançamentos</h1>
+
+	<h:form id="formLancamento"
+		style="margin-top:10%; margin-left:40%;    margin-right: 40%;">
+		<h:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="Cadastro de lançamentos" />
+			</f:facet>
+
+			<h:outputLabel value="ID:" />
+			<h:inputText value="#{lancamentoBean.lancamento.id}" readonly="true" />
+
+			<h:outputLabel value="Nota:" />
+			<h:inputText value="#{lancamentoBean.lancamento.numeroNotaFiscal}" />
+
+			<h:outputLabel value="Emp. Origem:" />
+			<h:inputText value="#{lancamentoBean.lancamento.empresaOrigem}" />
+
+			<h:outputLabel value="Emp. Destino:" />
+			<h:inputText value="#{lancamentoBean.lancamento.empresaDestino}" />
+
+			<h:column>
+				<h:outputLabel />
+				<h:panelGroup>
+					<h:commandButton value="Novo" action="#{lancementoBean.novo}"
+						   title="Novo" />
+					<h:commandButton style="margin-left:1cm;" value="Salvar"
+						action="#{lancementoBean.salvar}"
+						   title="Salvar" />
+					<h:commandButton style="margin-left:1cm;" value="Remove"
+						action="#{lancementoBean.remover}"
+						 title="Remover"
+						rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}" />
+					<h:commandButton style="margin-left:1cm;" value="Limpar"
+						action="#{lancementoBean.novo}"
+						title="Limpar" />
+				</h:panelGroup>
+			</h:column>
+
+		</h:panelGrid>
+	</h:form>
+</h:body>
+
+</html>

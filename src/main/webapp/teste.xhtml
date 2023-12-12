@@ -11,16 +11,7 @@
 </h:head>
 
 <h:body>
-
-	<h:form id="formMenu">
-		<h:commandLink value="Administração" action="primeirapagina" style="margin-left:1cm;" />
-		<h:commandLink value="Lançamentos" action="lancamentos" style="margin-left:1cm;" />
-		<h:commandLink value="Trocar usuário" action="index" style="margin-left:1cm;" />
-	</h:form>
-	
-	<br/>
-
-	<h:form id="formPessoa" enctype="multipart/form-data" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">		
+	<h:form id="formPessoa" enctype="multipart/form-data">		
 
 		<h:graphicImage height="50" width="50" library="imagens"
 			name="java-runtime.jpg" />
@@ -123,7 +114,7 @@
 						target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
 				</h:commandLink>
 				 &nbsp;
-				<h:commandLink value="Deletar" action="#{pessoaBean.remover}" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
+				<h:commandLink value="Deletar" action="#{pessoaBean.remover}">
 					<f:setPropertyActionListener value="#{pessoa}"
 						target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
 				</h:commandLink>
