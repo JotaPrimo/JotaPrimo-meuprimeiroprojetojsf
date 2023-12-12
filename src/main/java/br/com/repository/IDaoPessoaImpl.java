@@ -1,0 +1,51 @@
+package br.com.repository;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.faces.model.SelectItem;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import br.com.entidades.Pessoa;
+import br.com.jpautil.JPAUtil;
+
+@Named
+public class IDaoPessoaImpl implements IDaoPessoa, Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private EntityManager entityManager = JPAUtil.getEntityManager();
+
+	@Override
+	public Pessoa consultarUsuario(String login, String senha) {
+
+		Pessoa pessoa = null;
+
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+
+		try {
+			pessoa = (Pessoa) entityManager
+					.createQuery("select p from Pessoa p where p.login = '" + login + "' and p.senha = '" + senha + "'")
+					.getSingleResult();
+
+		} catch (javax.persistence.NoResultException e) {/* Tratamento se não encontrar usuário com login e senha */
+		}
+
+		entityTransaction.commit();
+
+		return pessoa;
+
+	}
+
+	@Override
+	public List<SelectItem> listaEstados() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

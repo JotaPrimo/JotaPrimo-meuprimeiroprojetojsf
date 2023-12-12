@@ -38,15 +38,15 @@ public class FilterAutenticacao implements Filter {
 		
 		String url = req.getServletPath();
 		
-		if (!url.equalsIgnoreCase("index.jsf") && usuarioLogado == null){
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/faces/index.xhtml");
-			dispatcher.forward(request, response);
-			return;
-		}else {
-			// executa as ações do request e do response
-			chain.doFilter(request, response);
-		}					
-		// chain.doFilter(request, response);
+//		if (!url.equalsIgnoreCase("index.jsf") && usuarioLogado == null){
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/faces/index.xhtml");
+//			dispatcher.forward(request, response);
+//			return;
+//		}else {
+//			// executa as ações do request e do response
+//			chain.doFilter(request, response);
+//		}					
+		chain.doFilter(request, response);
 	}
 
 	@Override

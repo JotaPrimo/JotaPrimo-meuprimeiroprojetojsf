@@ -2,21 +2,28 @@ package br.com.cursojsf;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import br.com.dao.DaoGeneric;
 import br.com.entidades.Pessoa;
+import br.com.repository.IDaoPessoa;
 import br.com.services.PessoaService;
+
+
 
 @ViewScoped
 @ManagedBean(name = "pessoaBean")
-public class PessoaBean implements Serializable {
-	
+public class PessoaBean implements Serializable {	
+		
 	private static final long serialVersionUID = 1L;
 	private Pessoa pessoa = new Pessoa();
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
@@ -42,6 +49,31 @@ public class PessoaBean implements Serializable {
 	
 	public String editar() {
 		return "";
+	}
+	
+	public String logar() {
+
+		Pessoa pessoaUser = pessoaService.consultarUsuario(pessoa.getLogin(),
+				pessoa.getSenha());
+
+		if (pessoaUser != null) {// achou o usuário
+
+			// adicionar o usuário na sessão usuarioLogado
+			FacesContext context = FacesContext.getCurrentInstance();
+			ExternalContext externalContext = context.getExternalContext();
+			
+			HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();
+			HttpSession session = req.getSession();
+			
+			session.setAttribute("usuarioLogado", pessoaUser);
+
+			return "primeirapagina.jsf";
+		}else {
+			FacesContext.getCurrentInstance().addMessage("msg", new FacesMessage("Usuário não encontrado"));
+			
+		}
+
+		return "index.jsf";
 	}
 	
 	@PostConstruct
