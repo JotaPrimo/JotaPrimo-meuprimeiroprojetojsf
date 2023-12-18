@@ -37,6 +37,12 @@
 
 
 		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>4.3.8.Final</version>
@@ -58,6 +64,12 @@
 			<version>42.6.0</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>12.0.0</version>
+		</dependency>
 
 
 		<dependency>
