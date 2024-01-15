@@ -19,9 +19,10 @@ import br.com.services.LancamentoService;
 public class LancamentoBean {
 	
 	private Lancamento lancamento = new Lancamento();
-	private DaoGeneric<Lancamento> daoGeneric = new DaoGeneric<Lancamento>();
-	private LancamentoService lancamentoService = new LancamentoService();
+	private DaoGeneric<Lancamento> daoGeneric = new DaoGeneric<Lancamento>();	
 	private List<Lancamento> lancamentos = new ArrayList<Lancamento>();
+	
+	private LancamentoService lancamentoService = new LancamentoService();
 	
 	public String salvar() {
 		FacesContext context = FacesContext.getCurrentInstance();

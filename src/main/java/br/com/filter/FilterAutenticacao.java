@@ -45,7 +45,7 @@ public class FilterAutenticacao implements Filter {
 			chain.doFilter(request, response);
 		}
 
-		chain.doFilter(request, response);
+		// chain.doFilter(request, response);
 	}
 
 	@Override
