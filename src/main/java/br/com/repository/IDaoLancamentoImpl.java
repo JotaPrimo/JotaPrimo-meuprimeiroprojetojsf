@@ -15,14 +15,14 @@ public class IDaoLancamentoImpl implements IDaoLancamento {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Lancamento> consultar(Long codUser) {
+	public List<Lancamento> consultar(Long idUser) {
 		List<Lancamento> lancamentos = null;
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		
-		lancamentos = entityManager.createQuery("select l from Lancamento l where usuaio_id = :idUser")
-				.setParameter("idUser", codUser)
+		lancamentos = entityManager.createQuery(" FROM Lancamento l WHERE usuario_id = :idUser")
+				.setParameter("idUser", idUser)
 				.getResultList();
 		
 		entityTransaction.commit();

@@ -49,7 +49,7 @@
 					<h:commandButton style="margin-left:1cm;" value="Salvar"
 						action="#{lancamentoBean.salvar}"
 						   title="Salvar" />
-					<h:commandButton style="margin-left:1cm;" value="Remove"
+					<h:commandButton style="margin-left:1cm;" value="Remover"
 						action="#{lancamentoBean.remover}"
 						 title="Remover"
 						rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}" />
@@ -60,6 +60,47 @@
 			</h:column>
 
 		</h:panelGrid>
+		
+		<h:dataTable value="#{lancamentoBean.lancamentos}" var="l" border="3">
+			<f:facet name="header">Lista de lançamentos</f:facet>
+			
+			<h:column>
+				<f:facet name="header">#ID</f:facet>
+				<h:outputLabel value="#{l.id}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Nº Nota Fiscal</f:facet>
+				<h:outputLabel value="#{l.numeroNotaFiscal}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Empresa Origem</f:facet>
+				<h:outputLabel value="#{l.empresaOrigem}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Empresa Destino</f:facet>
+				<h:outputLabel value="#{l.empresaDestino}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink title="Editar">
+					<h:graphicImage value="/resources/imagens/editar.jpg" width="30px" height="30px"></h:graphicImage>
+					<f:setPropertyActionListener value="#{l}" target="#{lancamentoBean.lancamento}"></f:setPropertyActionListener>
+				</h:commandLink>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Remover</f:facet>
+				<h:commandLink title="Remover" action="#{lancamentoBean.remover}">
+					<h:graphicImage value="/resources/imagens/deletar.png" width="30px" height="30px"></h:graphicImage>
+					<f:setPropertyActionListener value="#{l}" target="#{lancamentoBean.lancamento}"></f:setPropertyActionListener>
+				</h:commandLink>
+			</h:column>
+			
+		</h:dataTable>
 	</h:form>
 </h:body>
 

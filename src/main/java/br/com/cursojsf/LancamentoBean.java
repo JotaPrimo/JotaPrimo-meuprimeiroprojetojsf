@@ -32,14 +32,14 @@ public class LancamentoBean {
 		lancamento.setUsuario(pessoaUser);
 		lancamentoService.salvar(lancamento);
 		
-		carregarLancamentos(pessoaUser.getId());
+		carregarLancamentos();
 		
 		return "";
 	}
 	
 	@PostConstruct
-	public void carregarLancamentos(Long id) {
-		lancamentos = lancamentoService.carregarLancamento(id);
+	public void carregarLancamentos() {
+		lancamentos = lancamentoService.carregarLancamento();
 	}
 	
 	public String novo() {
@@ -48,14 +48,9 @@ public class LancamentoBean {
 	}
 	
 	public String remover() {
-		
-		FacesContext context = FacesContext.getCurrentInstance();
-		ExternalContext externalContext = context.getExternalContext();
-		Pessoa pessoaUser = (Pessoa) externalContext.getSessionMap().get("usuarioLogado");
-		
 		lancamentoService.deletar(lancamento);
 		lancamento = new Lancamento();
-		carregarLancamentos(pessoaUser.getId());
+		carregarLancamentos();
 		return "";
 	}
 	
