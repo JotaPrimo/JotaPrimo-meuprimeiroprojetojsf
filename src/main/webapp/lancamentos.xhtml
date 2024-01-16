@@ -13,7 +13,7 @@
 <h:body>
 	<h:form id="formMenu">
 		<h:commandLink value="Administração" action="lancamentos"
-			style="margin-left:1cm;" />
+			style="margin-left:1cm;" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}" />
 		<h:commandLink value="Lançamentos" action="primeirapagina"
 			style="margin-left:1cm;" />
 		<h:commandLink value="Trocar usuário" action="index"
@@ -92,7 +92,7 @@
 				</h:commandLink>
 			</h:column>
 			
-			<h:column>
+			<h:column rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
 				<f:facet name="header">Remover</f:facet>
 				<h:commandLink title="Remover" action="#{lancamentoBean.remover}">
 					<h:graphicImage value="/resources/imagens/deletar.png" width="30px" height="30px"></h:graphicImage>

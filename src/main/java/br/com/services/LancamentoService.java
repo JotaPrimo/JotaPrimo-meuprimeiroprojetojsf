@@ -15,7 +15,7 @@ public class LancamentoService {
 	private IDaoLancamentoImpl daoLancamentoImpl = new IDaoLancamentoImpl();
 	
 	public void salvar(Lancamento lancamento) {
-		daoGeneric.salvar(lancamento);
+		daoGeneric.merge(lancamento);
 	}
 	
 	public void deletar(Lancamento lancamento) {
