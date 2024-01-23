@@ -33,7 +33,12 @@ public class PessoaBean implements Serializable {
 
 	public String salvar() {
 		pessoaService.salvar(pessoa);
+		mostrarMsg("Cadastrado com sucesso");
 		return "";
+	}
+
+	private void mostrarMsg(String string) {
+				
 	}
 
 	public String novo() {
@@ -56,11 +61,8 @@ public class PessoaBean implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = context.getExternalContext();
 		Pessoa pessoaUser = (Pessoa) externalContext.getSessionMap().get(
-				"usuarioLogado");
+				"usuarioLogado");	
 		
-		System.out.println("Usuario logado : " + pessoaUser.getLogin());
-		System.out.println("Usuario logado : " + pessoaUser.getNome());
-		System.out.println("getPerfilUser  : " + pessoaUser.getPerfilUser());
 
 		return pessoaUser.getPerfilUser().equals(acesso);
 	}

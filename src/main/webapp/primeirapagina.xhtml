@@ -13,14 +13,19 @@
 <h:body>
 
 	<h:form id="formMenu">
-		<h:commandLink value="Administração" action="primeirapagina" style="margin-left:1cm;" />
-		<h:commandLink value="Lançamentos" action="lancamentos" style="margin-left:1cm;" />
-		<h:commandLink value="Trocar usuário" action="index" style="margin-left:1cm;" />
+		<h:commandLink value="Administração" action="primeirapagina"
+			style="margin-left:1cm;" />
+		<h:commandLink value="Lançamentos" action="lancamentos"
+			style="margin-left:1cm;" />
+		<h:commandLink value="Trocar usuário" action="index"
+			style="margin-left:1cm;" />
 	</h:form>
-	
-	<br/>
 
-	<h:form id="formPessoa" enctype="multipart/form-data">		
+	<br />
+
+	<h:form id="formPessoa" enctype="multipart/form-data">
+
+		<h:messages infoStyle="color: green;" />
 
 		<h:graphicImage height="50" width="50" library="imagens"
 			name="java-runtime.jpg" />
@@ -42,57 +47,65 @@
 				required="true" />
 
 			<h:outputLabel for="idade" value="Idade" />
-			<h:inputText id="idade" type="number" value="#{pessoaBean.pessoa.idade}"
-				required="true" />			
-			
+			<h:inputText id="idade" type="number"
+				value="#{pessoaBean.pessoa.idade}" required="true" />
+
 			<h:outputLabel value="Framweorks" />
-			<h:selectManyMenu style="height:150px;" id="framweorks" value="#{pessoaBean.pessoa.framweorks}">
-					<f:selectItem itemValue="" itemLabel="[--Selecione--]" noSelectionOption="true" />
-					<f:selectItem itemValue="Hibernate" />
-					<f:selectItem itemValue="Spring MVC" />
-					<f:selectItem itemValue="Laravel" />
-					<f:selectItem itemValue="JPA" />
-					<f:selectItem itemValue="JSF" />
-					<f:selectItem itemValue="Primefaces" />
+			<h:selectManyMenu style="height:150px;" id="framweorks"
+				value="#{pessoaBean.pessoa.framweorks}">
+				<f:selectItem itemValue="" itemLabel="[--Selecione--]"
+					noSelectionOption="true" />
+				<f:selectItem itemValue="Hibernate" />
+				<f:selectItem itemValue="Spring MVC" />
+				<f:selectItem itemValue="Laravel" />
+				<f:selectItem itemValue="JPA" />
+				<f:selectItem itemValue="JSF" />
+				<f:selectItem itemValue="Primefaces" />
 			</h:selectManyMenu>
-			
+
 			<h:outputLabel value="Sexo" for="sexo" />
 			<h:selectOneRadio id="sexo" value="#{pessoaBean.pessoa.sexo}">
-				<f:selectItems value="#{pessoaBean.retornaOpcoesSexo()}" />				
+				<f:selectItems value="#{pessoaBean.retornaOpcoesSexo()}" />
 			</h:selectOneRadio>
-			
-			<h:outputLabel for="linguagens" value="Linguagens" />		
-			<h:selectManyCheckbox id="linguagens" value="#{pessoaBean.pessoa.linguagens}">
+
+			<h:outputLabel for="linguagens" value="Linguagens" />
+			<h:selectManyCheckbox id="linguagens"
+				value="#{pessoaBean.pessoa.linguagens}">
 				<f:selectItem itemLabel="JAVA" itemValue="1" />
-					<f:selectItem itemLabel="PHP" itemValue="2" />
-					<f:selectItem itemLabel="PYTHON" itemValue="3" />
-					<f:selectItem itemLabel="RUBY" itemValue="4" />
-					<f:selectItem itemLabel="GO" itemValue="5" />
+				<f:selectItem itemLabel="PHP" itemValue="2" />
+				<f:selectItem itemLabel="PYTHON" itemValue="3" />
+				<f:selectItem itemLabel="RUBY" itemValue="4" />
+				<f:selectItem itemLabel="GO" itemValue="5" />
 			</h:selectManyCheckbox>
-		
+
 
 			<h:outputLabel value="Ativo" />
 			<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}" />
-			
+
 			<h:outputLabel value="Login" />
 			<h:inputText value="#{pessoaBean.pessoa.login}" required="true" />
-			
+
 			<h:outputLabel value="Senha" />
 			<h:inputSecret value="#{pessoaBean.pessoa.senha}" required="true" />
-			
+
 			<h:outputLabel for="perfilUser" value="Perfil User" />
-			<h:selectOneMenu id="perfilUser" value="#{pessoaBean.pessoa.perfilUser}">
-					<f:selectItem itemValue="" itemLabel="[--Selecione--]" noSelectionOption="true" />
-					<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Admin" />
-					<f:selectItem itemValue="SECRETARIO" itemLabel="Secretário" />
+			<h:selectOneMenu id="perfilUser"
+				value="#{pessoaBean.pessoa.perfilUser}">
+				<f:selectItem itemValue="" itemLabel="[--Selecione--]"
+					noSelectionOption="true" />
+				<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Admin" />
+				<f:selectItem itemValue="SECRETARIO" itemLabel="Secretário" />
 			</h:selectOneMenu>
 
 			<h:outputLabel value="Ações" />
 
 			<h:panelGroup>
-				<h:commandButton value="Novo" action="#{pessoaBean.novo}" image="/resources/imagens/salvar.png" style="height: 30px;" />
-				<h:commandButton value="Remover" action="#{pessoaBean.remover}"  image="/resources/imagens/deletar.png" style="height: 30px;"/>
-				<h:commandButton value="Salvar" action="#{pessoaBean.salvar}"  image="/resources/imagens/editar.jpg" style="height: 30px;"/>
+				<h:commandButton value="Novo" action="#{pessoaBean.novo}"
+					image="/resources/imagens/salvar.png" style="height: 30px;" />
+				<h:commandButton value="Remover" action="#{pessoaBean.remover}"
+					image="/resources/imagens/deletar.png" style="height: 30px;" />
+				<h:commandButton value="Salvar" action="#{pessoaBean.salvar}"
+					image="/resources/imagens/editar.jpg" style="height: 30px;" />
 				<h:commandButton value="Limpar" type="reset" />
 			</h:panelGroup>
 
@@ -131,7 +144,8 @@
 						target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
 				</h:commandLink>
 				 &nbsp;
-				<h:commandLink value="Deletar" action="#{pessoaBean.remover}" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
+				<h:commandLink value="Deletar" action="#{pessoaBean.remover}"
+					rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
 					<f:setPropertyActionListener value="#{pessoa}"
 						target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
 				</h:commandLink>
