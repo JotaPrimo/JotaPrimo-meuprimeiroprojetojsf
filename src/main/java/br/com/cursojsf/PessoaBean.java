@@ -2,18 +2,23 @@ package br.com.cursojsf;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import br.com.entidades.Pessoa;
+import br.com.enuns.Sexo;
 import br.com.services.PessoaService;
 
 @ViewScoped
@@ -23,7 +28,7 @@ public class PessoaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Pessoa pessoa = new Pessoa();
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
-	
+		
 	private PessoaService pessoaService = new PessoaService();
 
 	public String salvar() {
@@ -91,6 +96,10 @@ public class PessoaBean implements Serializable {
 		for (Pessoa p : pessoas) {
 			System.out.println(p);
 		}
+	}
+	
+	public List<SelectItem> retornaOpcoesSexo() {
+		return Sexo.retornaLista();
 	}
 
 	public Pessoa getPessoa() {

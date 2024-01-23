@@ -1,11 +1,14 @@
 package br.com.entidades;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import br.com.enuns.NivelProgramador;
 
 @org.hibernate.annotations.Proxy(lazy = false)
 @Entity
@@ -35,7 +38,9 @@ public class Pessoa implements Serializable {
 	
 	private String perfilUser;
 	
-
+	private String nivelProgramador;	
+	
+	
 	public Pessoa() {
 
 	}
@@ -121,7 +126,13 @@ public class Pessoa implements Serializable {
 		return senha;
 	}
 	
+	public String getNivelProgramador() {
+		return nivelProgramador;
+	}
 	
+	public void setNivelProgramador(String nivelProgramador) {
+		this.nivelProgramador = nivelProgramador;
+	}
 
 	@Override
 	public int hashCode() {
@@ -152,6 +163,7 @@ public class Pessoa implements Serializable {
 	public String toString() {
 		return "Pessoa [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", idade=" + idade + "]";
 	}
+	
 
 	
 }

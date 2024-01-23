@@ -20,7 +20,7 @@
 	
 	<br/>
 
-	<h:form id="formPessoa" enctype="multipart/form-data" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">		
+	<h:form id="formPessoa" enctype="multipart/form-data">		
 
 		<h:graphicImage height="50" width="50" library="imagens"
 			name="java-runtime.jpg" />
@@ -43,14 +43,7 @@
 
 			<h:outputLabel for="idade" value="Idade" />
 			<h:inputText id="idade" type="number" value="#{pessoaBean.pessoa.idade}"
-				required="true" />
-
-			<h:outputLabel for="sobrenome" value="Sobrenome" />
-			<h:selectOneMenu id="sexo" value="#{pessoaBean.pessoa.sexo}">
-					<f:selectItem itemValue="" itemLabel="[--Selecione--]" noSelectionOption="true" />
-					<f:selectItem itemValue="M" itemLabel="Masculino" />
-					<f:selectItem itemValue="F" itemLabel="Feminino" />
-			</h:selectOneMenu>
+				required="true" />			
 			
 			<h:outputLabel value="Framweorks" />
 			<h:selectManyMenu style="height:150px;" id="framweorks" value="#{pessoaBean.pessoa.framweorks}">
@@ -62,6 +55,12 @@
 					<f:selectItem itemValue="JSF" />
 					<f:selectItem itemValue="Primefaces" />
 			</h:selectManyMenu>
+			
+			<h:outputLabel value="Sexo" for="sexo" />
+			<h:selectOneRadio id="sexo" value="#{pessoaBean.pessoa.sexo}">
+				<f:selectItems value="#{pessoaBean.retornaOpcoesSexo()}" />				
+			</h:selectOneRadio>		
+		
 
 			<h:outputLabel value="Ativo" />
 			<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}" />
