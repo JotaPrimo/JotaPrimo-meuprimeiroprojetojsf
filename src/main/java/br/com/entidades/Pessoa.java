@@ -36,10 +36,9 @@ public class Pessoa implements Serializable {
 	
 	private String senha;
 	
-	private String perfilUser;
+	private String perfilUser;	
 	
-	private String nivelProgramador;	
-	
+	private int[] linguagens;
 	
 	public Pessoa() {
 
@@ -124,15 +123,16 @@ public class Pessoa implements Serializable {
 	
 	public String getSenha() {
 		return senha;
+	}	
+	
+	public int[] getLinguagens() {
+		return linguagens;
 	}
 	
-	public String getNivelProgramador() {
-		return nivelProgramador;
+	public void setLinguagens(int[] linguagens) {
+		this.linguagens = linguagens;
 	}
-	
-	public void setNivelProgramador(String nivelProgramador) {
-		this.nivelProgramador = nivelProgramador;
-	}
+
 
 	@Override
 	public int hashCode() {

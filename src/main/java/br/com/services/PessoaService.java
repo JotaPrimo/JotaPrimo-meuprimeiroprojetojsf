@@ -15,6 +15,9 @@ public class PessoaService {
 	
 	
 	public void salvar(Pessoa pessoa) {
+		System.out.println("=============================");
+		System.out.println(pessoa);
+		System.out.println("=============================");
 		daoGeneric.salvar(pessoa);
 	}
 	

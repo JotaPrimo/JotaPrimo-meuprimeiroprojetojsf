@@ -59,7 +59,16 @@
 			<h:outputLabel value="Sexo" for="sexo" />
 			<h:selectOneRadio id="sexo" value="#{pessoaBean.pessoa.sexo}">
 				<f:selectItems value="#{pessoaBean.retornaOpcoesSexo()}" />				
-			</h:selectOneRadio>		
+			</h:selectOneRadio>
+			
+			<h:outputLabel for="linguagens" value="Linguagens" />		
+			<h:selectManyCheckbox id="linguagens" value="#{pessoaBean.pessoa.linguagens}">
+				<f:selectItem itemLabel="JAVA" itemValue="1" />
+					<f:selectItem itemLabel="PHP" itemValue="2" />
+					<f:selectItem itemLabel="PYTHON" itemValue="3" />
+					<f:selectItem itemLabel="RUBY" itemValue="4" />
+					<f:selectItem itemLabel="GO" itemValue="5" />
+			</h:selectManyCheckbox>
 		
 
 			<h:outputLabel value="Ativo" />
