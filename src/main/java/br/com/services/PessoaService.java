@@ -16,20 +16,12 @@ public class PessoaService {
 	private IDaoPessoa daoPessoa = new IDaoPessoaImpl();
 	
 	
-	public void salvar(Pessoa pessoa) {
-		System.out.println("=============================");
-		System.out.println(pessoa);
-		System.out.println("=============================");
-		
-		Optional<Pessoa> retorno = Optional.of(daoGeneric.merge(pessoa));
-		
-		System.out.println(retorno);
-		
-		if(retorno.isPresent()) {
-			System.out.println("salvou");
-		}else {
-			throw new UnprocessableEntityException("Erro ao tentar salvar pessoa no banco");
-		}
+	public void salvar(Pessoa pessoa) {		
+		try {
+			daoGeneric.merge(pessoa);
+		} catch (Exception e) {
+			throw new UnprocessableEntityException("Erro ao tentar salvar pessoa");
+		}		
 	}
 	
 	public void delete(Pessoa pessoa) {

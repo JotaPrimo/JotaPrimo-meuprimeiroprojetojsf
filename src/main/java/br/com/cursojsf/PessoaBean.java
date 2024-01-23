@@ -32,6 +32,7 @@ public class PessoaBean implements Serializable {
 	private PessoaService pessoaService = new PessoaService();
 
 	public String salvar() {
+		System.out.println("Passei aqui PessoaBean -> salvar ");
 		pessoaService.salvar(pessoa);
 		mostrarMsg("Cadastrado com sucesso");
 		return "";
