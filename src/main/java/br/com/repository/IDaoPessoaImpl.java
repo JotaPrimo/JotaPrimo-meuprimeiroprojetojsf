@@ -41,10 +41,6 @@ public class IDaoPessoaImpl implements IDaoPessoa, Serializable {
 		return pessoa;
 	}
 
-	@Override
-	public List<SelectItem> listaEstados() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

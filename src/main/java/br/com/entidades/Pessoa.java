@@ -1,14 +1,20 @@
 package br.com.entidades;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import br.com.enuns.NivelProgramador;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @org.hibernate.annotations.Proxy(lazy = false)
 @Entity
@@ -20,44 +26,113 @@ public class Pessoa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@NotEmpty
+	@Size(min = 10, max = 50, message = "Nome deve ter entre 10 e 50 letras")
 	private String nome;
 
+	@NotEmpty(message = "Sobrenome deve ser informado")
+	@NotNull(message = "Sobrenome deve ser informado")
 	private String sobrenome;
 
+	@DecimalMax(value = "50", message = "Idade de ser menor que 50")
+	@DecimalMin(value = "10", message = "Idade deve ser maior que 10")
 	private Integer idade;
-	
-	private String sexo;
-	
-	private String[] framweorks;
-	
-	private Boolean ativo;
-	
-	private String login;
-	
-	private String senha;
-	
-	private String perfilUser;	
-	
-	private int[] linguagens;
-	
-	public Pessoa() {
 
+	@Temporal(TemporalType.DATE)
+	@Column(name = "datanascimento")
+	private Date dataNascimento = new Date();
+
+	private String sexo;
+
+	private String[] frameworks;
+
+	private Boolean ativo;
+
+	private String login;
+	private String senha;
+
+	private String perfilUser;
+
+	private String nivelProgramador;
+
+	private String cpf;
+
+	private String titEleitoral;
+
+	public String getCpf() {
+		return cpf;
 	}
-	
-	public void setFramweorks(String[] framweorks) {
-		this.framweorks = framweorks;
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
-	
-	public String[] getFramweorks() {
-		return framweorks;
+
+	public String getTitEleitoral() {
+		return titEleitoral;
 	}
-	
+
+	public void setTitEleitoral(String titEleitoral) {
+		this.titEleitoral = titEleitoral;
+	}
+
+	public void setNivelProgramador(String nivelProgramador) {
+		this.nivelProgramador = nivelProgramador;
+	}
+
+	public String getNivelProgramador() {
+		return nivelProgramador;
+	}
+
+	public void setPerfilUser(String perfilUser) {
+		this.perfilUser = perfilUser;
+	}
+
 	public String getPerfilUser() {
 		return perfilUser;
 	}
-	
-	public void setPerfilUser(String perfilUser) {
-		this.perfilUser = perfilUser;
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setFrameworks(String[] frameworks) {
+		this.frameworks = frameworks;
+	}
+
+	public String[] getFrameworks() {
+		return frameworks;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public Pessoa() {
+
 	}
 
 	public Long getId() {
@@ -92,47 +167,13 @@ public class Pessoa implements Serializable {
 		this.idade = idade;
 	}
 
-	public String getSexo() {
-		return sexo;
-	}
-	
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-	
-
-	public Boolean getAtivo() {
-		return ativo;
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
-	
-	public String getLogin() {
-		return login;
-	}
-	
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-	
-	public String getSenha() {
-		return senha;
-	}	
-	
-	public int[] getLinguagens() {
-		return linguagens;
-	}
-	
-	public void setLinguagens(int[] linguagens) {
-		this.linguagens = linguagens;
-	}
-
 
 	@Override
 	public int hashCode() {
@@ -159,11 +200,4 @@ public class Pessoa implements Serializable {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", idade=" + idade + "]";
-	}
-	
-
-	
 }
