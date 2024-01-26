@@ -1,6 +1,7 @@
 package br.com.cursojsf;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
@@ -18,6 +19,8 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.view.ViewScoped;
 
+import com.google.gson.Gson;
+
 import br.com.dao.DaoGeneric;
 import br.com.entidades.Pessoa;
 import br.com.repository.IDaoPessoa;
@@ -30,7 +33,7 @@ public class PessoaBean implements Serializable {
 	private Pessoa pessoa = new Pessoa();
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
-	
+
 	private static final String URL_VIA_CEP = "https://viacep.com.br/ws/";
 
 	private IDaoPessoa iDaoPessoa = new IDaoPessoaImpl();
@@ -41,7 +44,7 @@ public class PessoaBean implements Serializable {
 		mostrarMsg("Cadastrado com sucesso!");
 		return "";
 	}
-	
+
 	public void pesquisaCep(AjaxBehaviorEvent event) {
 		try {
 			System.out.println("Chamada do metodo de busca de cep : " + pessoa.getCep());
@@ -49,28 +52,35 @@ public class PessoaBean implements Serializable {
 			URLConnection connection = url.openConnection();
 			InputStream inputStream = connection.getInputStream();
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+
+			StringBuilder jsonCep = setarRetornoBufferEmString(bufferedReader, new StringBuilder());
+
+			Pessoa gsonAux = new Gson().fromJson(jsonCep.toString(), Pessoa.class);
+
+			pessoa.setCep(gsonAux.getCep());
+			pessoa.setLogradouro(gsonAux.getLogradouro());
+			pessoa.setComplemento(gsonAux.getComplemento());
+			pessoa.setBairro(gsonAux.getBairro());
+			pessoa.setLocalidade(gsonAux.getLocalidade());
+			pessoa.setUf(gsonAux.getUf());
+			pessoa.setU(gsonAux.getUf());
 			
-			
-			StringBuilder jsonCep = new StringBuilder();
-			setarRetornoBufferEmString(bufferedReader, jsonCep);
-			
-			
+
 		} catch (Exception e) {
 			mostrarMsg("Ocorreu um erro");
 		}
-		
+
 	}
-	
-	public void setarRetornoBufferEmString(BufferedReader bufferedReader, StringBuilder jsonCep) {
-		try {
-			String cep = "";
-			while ((cep = bufferedReader.readLine()) != null) {
-				jsonCep.append(cep);
-			}
-			System.out.println("Retorno : " + cep);
-		} catch (Exception e) {
-			mostrarMsg("Erro na leitura do retorno");
+
+	public StringBuilder setarRetornoBufferEmString(BufferedReader bufferedReader, StringBuilder jsonCep)
+			throws IOException {
+		String cep = "";
+		while ((cep = bufferedReader.readLine()) != null) {
+			jsonCep.append(cep);
 		}
+		System.out.println("Retorno : " + cep);
+
+		return jsonCep;
 	}
 
 	public void registraLog() {
