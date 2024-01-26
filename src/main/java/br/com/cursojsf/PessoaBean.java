@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.view.ViewScoped;
 
@@ -32,6 +33,10 @@ public class PessoaBean implements Serializable {
 		carregarPessoas();
 		mostrarMsg("Cadastrado com sucesso!");
 		return "";
+	}
+	
+	public void pesquisaCep(AjaxBehaviorEvent event) {
+		System.out.println("Chamada do metodo de busca de cep : " + pessoa.getCep());
 	}
 
 	public void registraLog() {

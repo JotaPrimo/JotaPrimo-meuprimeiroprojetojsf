@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -58,6 +59,10 @@ public class Pessoa implements Serializable {
 	private String cpf;
 
 	private String titEleitoral;
+	
+	@Column(name = "cep", nullable = false)
+	@NotBlank(message = "Cep não pode ser vazio")
+	private String cep;
 
 	public String getCpf() {
 		return cpf;
@@ -65,6 +70,14 @@ public class Pessoa implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	
+	public String getCep() {
+		return cep;
+	}
+	
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
 	public String getTitEleitoral() {

@@ -74,7 +74,13 @@
 				<f:selectItem itemValue="PrimeFaces" />
 				<f:selectItem itemValue="JSF" />
 			</h:selectManyMenu>
-
+			
+			<h:outputLabel for="cep" value="CEP:" />
+			<h:inputText id="cep" required="true" value="#{pessoaBean.pessoa.cep}" requiredMessage="Campo obrigatório" 
+				validatorMessage="CEP deve ter 8 caracteres">
+				<f:validateLength minimum="8" maximum="8"></f:validateLength>
+				<f:ajax event="blur" execute="@this" listener="#{pessoaBean.pesquisaCep}" />
+			</h:inputText>
 
 			<h:outputLabel value="Ativo:" />
 			<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}" />
@@ -92,7 +98,7 @@
 				required="false">
 				<f:selectItem itemLabel="[-Selecione-]" noSelectionOption="true" />
 				<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Administrador" />
-				<f:selectItem itemValue="SECRETARIO" itemLabel="Secret�rio" />
+				<f:selectItem itemValue="SECRETARIO" itemLabel="Secretário" />
 				<f:selectItem itemValue="RECEPCIONISTA" itemLabel="Recepcionista" />
 			</h:selectOneMenu>
 
