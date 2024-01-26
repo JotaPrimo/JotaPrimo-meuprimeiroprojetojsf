@@ -1,6 +1,11 @@
 package br.com.cursojsf;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +30,8 @@ public class PessoaBean implements Serializable {
 	private Pessoa pessoa = new Pessoa();
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
+	
+	private static final String URL_VIA_CEP = "https://viacep.com.br/ws/";
 
 	private IDaoPessoa iDaoPessoa = new IDaoPessoaImpl();
 
@@ -36,7 +43,34 @@ public class PessoaBean implements Serializable {
 	}
 	
 	public void pesquisaCep(AjaxBehaviorEvent event) {
-		System.out.println("Chamada do metodo de busca de cep : " + pessoa.getCep());
+		try {
+			System.out.println("Chamada do metodo de busca de cep : " + pessoa.getCep());
+			URL url = new URL(pessoa.getCep() + "/json/");
+			URLConnection connection = url.openConnection();
+			InputStream inputStream = connection.getInputStream();
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+			
+			
+			StringBuilder jsonCep = new StringBuilder();
+			setarRetornoBufferEmString(bufferedReader, jsonCep);
+			
+			
+		} catch (Exception e) {
+			mostrarMsg("Ocorreu um erro");
+		}
+		
+	}
+	
+	public void setarRetornoBufferEmString(BufferedReader bufferedReader, StringBuilder jsonCep) {
+		try {
+			String cep = "";
+			while ((cep = bufferedReader.readLine()) != null) {
+				jsonCep.append(cep);
+			}
+			System.out.println("Retorno : " + cep);
+		} catch (Exception e) {
+			mostrarMsg("Erro na leitura do retorno");
+		}
 	}
 
 	public void registraLog() {
