@@ -18,6 +18,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.view.ViewScoped;
+import javax.servlet.http.HttpServletRequest;
 
 import com.google.gson.Gson;
 
@@ -25,6 +26,7 @@ import br.com.dao.DaoGeneric;
 import br.com.entidades.Pessoa;
 import br.com.repository.IDaoPessoa;
 import br.com.repository.IDaoPessoaImpl;
+import br.com.services.MessageService;
 
 @ViewScoped
 @ManagedBean(name = "pessoaBean")
@@ -136,6 +138,28 @@ public class PessoaBean implements Serializable {
 
 	public List<Pessoa> getPessoas() {
 		return pessoas;
+	}
+	
+	public String deslogar() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		Pessoa pessoaUser = (Pessoa) externalContext.getSessionMap().get("usuarioLogado");
+		
+		if (pessoaUser != null) {
+			externalContext.getSessionMap().remove("usuarioLogado");
+			
+			HttpServletRequest httpServletRequest = (HttpServletRequest) 
+					context.getCurrentInstance()
+					.getExternalContext()
+					.getRequest();
+			
+			httpServletRequest.getSession().invalidate();
+			return "index.jsf";
+		}
+		
+		MessageService.mostrarMessage("Ocorreu um erro");
+		return "index.jsf";
+		
 	}
 
 	public String logar() {
