@@ -48,7 +48,7 @@ public class PessoaBean implements Serializable {
 	public void pesquisaCep(AjaxBehaviorEvent event) {
 		try {
 			System.out.println("Chamada do metodo de busca de cep : " + pessoa.getCep());
-			URL url = new URL(pessoa.getCep() + "/json/");
+			URL url = new URL(URL_VIA_CEP + pessoa.getCep() + "/json/");
 			URLConnection connection = url.openConnection();
 			InputStream inputStream = connection.getInputStream();
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
@@ -56,6 +56,12 @@ public class PessoaBean implements Serializable {
 			StringBuilder jsonCep = setarRetornoBufferEmString(bufferedReader, new StringBuilder());
 
 			Pessoa gsonAux = new Gson().fromJson(jsonCep.toString(), Pessoa.class);
+			
+			System.out.println("===========================");
+			System.out.println("WEB SERVICE BORA APRENDER");
+			System.out.println(gsonAux.toString());
+			System.out.println(jsonCep.toString());
+			System.out.println("WEB SERVICE BORA APRENDER");
 
 			pessoa.setCep(gsonAux.getCep());
 			pessoa.setLogradouro(gsonAux.getLogradouro());
@@ -63,15 +69,14 @@ public class PessoaBean implements Serializable {
 			pessoa.setBairro(gsonAux.getBairro());
 			pessoa.setLocalidade(gsonAux.getLocalidade());
 			pessoa.setUf(gsonAux.getUf());
-			pessoa.setU(gsonAux.getUf());
+			pessoa.setIbge(gsonAux.getIbge());	
 			
-
 		} catch (Exception e) {
 			mostrarMsg("Ocorreu um erro");
 		}
 
 	}
-
+	
 	public StringBuilder setarRetornoBufferEmString(BufferedReader bufferedReader, StringBuilder jsonCep)
 			throws IOException {
 		String cep = "";

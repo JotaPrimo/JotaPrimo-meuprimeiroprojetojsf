@@ -28,7 +28,7 @@ public class Pessoa implements Serializable {
 	private Long id;
 
 	@NotEmpty
-	@Size(min = 10, max = 50, message = "Nome deve ter entre 10 e 50 letras")
+	@Size(min = 5, max = 50, message = "Nome deve ter entre 10 e 50 letras")
 	private String nome;
 
 	@NotEmpty(message = "Sobrenome deve ser informado")

@@ -76,12 +76,38 @@
 			</h:selectManyMenu>
 			
 			<h:outputLabel for="cep" value="CEP:" />
-			<h:inputText id="cep" required="true" value="#{pessoaBean.pessoa.cep}" requiredMessage="Campo obrigatório" 
+			<h:inputText id="cep" required="true" value="#{pessoaBean.pessoa.cep}" 
+				requiredMessage="Campo obrigatório" 				
 				validatorMessage="CEP deve ter 8 caracteres">
 				<f:validateLength minimum="8" maximum="8"></f:validateLength>
-				<f:ajax event="blur" execute="@this" listener="#{pessoaBean.pesquisaCep}" />
-			</h:inputText>
-
+				<f:ajax event="blur" execute="@this" listener="#{pessoaBean.pesquisaCep}" 
+					render="bairro logradouro localidade uf unidade gia ibge" />
+			</h:inputText>		
+			
+			<h:outputLabel value="Bairro:" for="bairro" />
+			<h:inputText id="bairro" value="#{pessoaBean.pessoa.bairro}" />
+			
+			<h:outputLabel value="Logradouro:" for="logradouro" />
+			<h:inputText id="logradouro" value="#{pessoaBean.pessoa.logradouro}" />	
+			
+			<h:outputLabel value="Complemento:" for="complemento" />
+			<h:inputText id="complemento" value="#{pessoaBean.pessoa.complemento}" />	
+			
+			<h:outputLabel value="Localidade:" for="localidade" />
+			<h:inputText id="localidade" value="#{pessoaBean.pessoa.localidade}" />
+			
+			<h:outputLabel value="UF:" for="uf" />
+			<h:inputText id="uf" value="#{pessoaBean.pessoa.uf}" />
+			
+			<h:outputLabel value="Unidade:" for="unidade" />
+			<h:inputText id="unidade" value="#{pessoaBean.pessoa.unidade}" />
+			
+			<h:outputLabel value="GIA:" for="gia" />
+			<h:inputText id="gia" value="#{pessoaBean.pessoa.gia}" />
+			
+			<h:outputLabel value="IBGE:" for="ibge" />
+			<h:inputText id="ibge" value="#{pessoaBean.pessoa.ibge}" />	
+			
 			<h:outputLabel value="Ativo:" />
 			<h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}" />
 
