@@ -17,6 +17,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,6 +28,7 @@ import br.com.entidades.Pessoa;
 import br.com.repository.IDaoPessoa;
 import br.com.repository.IDaoPessoaImpl;
 import br.com.services.MessageService;
+import br.com.services.PessoaService;
 
 @ViewScoped
 @ManagedBean(name = "pessoaBean")
@@ -39,6 +41,10 @@ public class PessoaBean implements Serializable {
 	private static final String URL_VIA_CEP = "https://viacep.com.br/ws/";
 
 	private IDaoPessoa iDaoPessoa = new IDaoPessoaImpl();
+	
+	private List<SelectItem> estados;
+	
+	private PessoaService service = new PessoaService();
 
 	public String salvar() {
 		pessoa = daoGeneric.merge(pessoa);
@@ -117,7 +123,7 @@ public class PessoaBean implements Serializable {
 
 	@PostConstruct
 	public void carregarPessoas() {
-		pessoas = daoGeneric.getListEntity(Pessoa.class);
+		pessoas = daoGeneric.getListEntity(Pessoa.class);		
 	}
 
 	public Pessoa getPessoa() {
@@ -138,6 +144,10 @@ public class PessoaBean implements Serializable {
 
 	public List<Pessoa> getPessoas() {
 		return pessoas;
+	}
+	
+	public List<SelectItem> getEstados() {
+		return service.getEstados();
 	}
 	
 	public String deslogar() {

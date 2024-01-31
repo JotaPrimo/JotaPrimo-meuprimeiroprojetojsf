@@ -3,6 +3,8 @@ package br.com.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.faces.model.SelectItem;
+
 import br.com.dao.DaoGeneric;
 import br.com.entidades.Pessoa;
 import br.com.exceptions.UnprocessableEntityException;
@@ -34,6 +36,10 @@ public class PessoaService {
 
 	public Pessoa consultarUsuario(String login, String senha) {		
 		return daoPessoa.consultarUsuario(login, senha);
+	}
+
+	public List<SelectItem> getEstados() {		
+		return daoPessoa.listaEstados();
 	}
 	
 }

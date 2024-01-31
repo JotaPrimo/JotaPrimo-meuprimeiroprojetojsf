@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
@@ -59,6 +60,9 @@ public class Pessoa implements Serializable {
 	private String cpf;
 
 	private String titEleitoral;
+	
+	@Transient // não fica persistente ou não grava no banco
+	private Estados estado;
 	
 	@Column(name = "cep", nullable = false)
 	@NotBlank(message = "Cep não pode ser vazio")
@@ -287,6 +291,14 @@ public class Pessoa implements Serializable {
 	
 	public void setUnidade(String unidade) {
 		this.unidade = unidade;
+	}
+	
+	public Estados getEstado() {
+		return estado;
+	}
+	
+	public void setEstado(Estados estado) {
+		this.estado = estado;
 	}
 
 	@Override

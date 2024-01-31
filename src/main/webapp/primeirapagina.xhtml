@@ -141,6 +141,11 @@
 				<f:selectItem itemValue="E" itemLabel="Expecialista" />
 			</h:selectOneRadio>
 
+			<h:outputLabel for="estado" value="Estados" />
+			<h:selectOneMenu value="#{pessoaBean.pessoa.estado}" required="true" requiredMessage="Selecione o estado" id="estado">
+				<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+				<f:selectItems value="#{pessoaBean.estados}" />
+			</h:selectOneMenu>
 
 			<h:outputLabel />
 			<h:panelGroup>
