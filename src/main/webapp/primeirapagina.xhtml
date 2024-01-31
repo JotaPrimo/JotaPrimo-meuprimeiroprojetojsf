@@ -142,10 +142,13 @@
 			</h:selectOneRadio>
 
 			<h:outputLabel for="estado" value="Estados" />
-			<h:selectOneMenu value="#{pessoaBean.pessoa.estado}" required="true" requiredMessage="Selecione o estado" id="estado">
+			<h:selectOneMenu value="#{pessoaBean.pessoa.estado}" required="true" immediate="true" requiredMessage="Selecione o estado" id="estado">
 				<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
-				<f:selectItems value="#{pessoaBean.estados}" />
+				<f:selectItems value="#{pessoaBean.estados}" var="estado" itemValue="#{estado.id}" />
+				<f:ajax event="change" execute="@this" listener="#{pessoaBean.carregaCidades}" />
 			</h:selectOneMenu>
+			
+			
 
 			<h:outputLabel />
 			<h:panelGroup>

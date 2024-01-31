@@ -207,4 +207,8 @@ public class PessoaBean implements Serializable {
 		System.out.println("Valor Novo: " + evento.getNewValue());
 	}
 
+	public void carregaCidades(AjaxBehaviorEvent event) {
+		System.out.println(event.getComponent().getAttributes().get("submittedValue"));
+	}
+	
 }

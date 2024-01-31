@@ -58,7 +58,7 @@ public class IDaoPessoaImpl implements IDaoPessoa, Serializable {
 		entityManager.close();
 		
 		for (Estados estado : estados) {
-			listSelectItems.add(new SelectItem(estado, estado.getNome()));
+			listSelectItems.add(new SelectItem(estado.getId(), estado.getNome()));
 		}
 		
 		return listSelectItems;
