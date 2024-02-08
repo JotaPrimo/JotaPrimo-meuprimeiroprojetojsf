@@ -24,9 +24,13 @@ import javax.servlet.http.HttpServletRequest;
 import com.google.gson.Gson;
 
 import br.com.dao.DaoGeneric;
+import br.com.entidades.Cidades;
+import br.com.entidades.Estados;
 import br.com.entidades.Pessoa;
+import br.com.jpautil.JPAUtil;
 import br.com.repository.IDaoPessoa;
 import br.com.repository.IDaoPessoaImpl;
+import br.com.services.CidadeService;
 import br.com.services.MessageService;
 import br.com.services.PessoaService;
 
@@ -43,6 +47,8 @@ public class PessoaBean implements Serializable {
 	private IDaoPessoa iDaoPessoa = new IDaoPessoaImpl();
 	
 	private List<SelectItem> estados;
+	
+	private List<SelectItem> cidades;
 	
 	private PessoaService service = new PessoaService();
 
@@ -206,9 +212,31 @@ public class PessoaBean implements Serializable {
 		System.out.println("Valor antigo: " + evento.getOldValue());
 		System.out.println("Valor Novo: " + evento.getNewValue());
 	}
-
-	public void carregaCidades(AjaxBehaviorEvent event) {
-		System.out.println(event.getComponent().getAttributes().get("submittedValue"));
+	
+	public List<SelectItem> getCidades() {
+		return cidades;
 	}
 	
+	public void setCidades(List<SelectItem> cidades) {
+		this.cidades = cidades;
+	}
+
+	public void carregaCidades(AjaxBehaviorEvent event) {
+		String codigoEstado = event.getComponent().getAttributes().get("submittedValue").toString();
+		
+		if (codigoEstado != null) {
+			Estados estado = JPAUtil
+					.getEntityManager()
+					.find(Estados.class, Long.parseLong(codigoEstado));
+			
+			if (estado != null) {
+				pessoa.setEstado(estado);
+				
+				@SuppressWarnings("unchecked")
+				List<Cidades> cidades =  CidadeService.getListaDeCidadesPeloEstadoId(Long.parseLong(codigoEstado));
+				List<SelectItem> selectItemsCidades = CidadeService.retornaSelectItemDeCidades(cidades);
+				setCidades(selectItemsCidades);
+			}			
+		}		
+	}	
 }

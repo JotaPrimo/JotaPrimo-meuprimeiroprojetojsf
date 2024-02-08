@@ -32,13 +32,15 @@
 			<h:outputLabel value="Nome:" />
 			<h:inputText value="#{pessoaBean.pessoa.nome}"
 				valueChangeListener="#{pessoaBean.mudancaDeValor}" required="true"
-				requiredMessage="Informe nome do usuário" pt:placeholder="Informe o nome do usuário"
+				requiredMessage="Informe nome do usuário"
+				pt:placeholder="Informe o nome do usuário"
 				validatorMessage="Nome tem que ter no minímo 10 letras">
 				<f:validateLength minimum="10" maximum="50" />
 			</h:inputText>
 
 			<h:outputLabel value="Sobrenome:" />
-			<h:inputText value="#{pessoaBean.pessoa.sobrenome}" pt:placeholder="Informe o sobrenome"
+			<h:inputText value="#{pessoaBean.pessoa.sobrenome}"
+				pt:placeholder="Informe o sobrenome"
 				valueChangeListener="#{pessoaBean.mudancaDeValorSobrenome}" />
 
 			<h:outputLabel value="Idade:" />
@@ -142,13 +144,21 @@
 			</h:selectOneRadio>
 
 			<h:outputLabel for="estado" value="Estados" />
-			<h:selectOneMenu value="#{pessoaBean.pessoa.estado}" required="true" immediate="true" requiredMessage="Selecione o estado" id="estado">
+			<h:selectOneMenu value="#{pessoaBean.pessoa.estado}" required="true"
+				immediate="true" requiredMessage="Selecione o estado" id="estado">
 				<f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
-				<f:selectItems value="#{pessoaBean.estados}" var="estado" itemValue="#{estado.id}" />
-				<f:ajax event="change" execute="@this" listener="#{pessoaBean.carregaCidades}" />
+				<f:selectItems value="#{pessoaBean.estados}" var="estado"
+					itemValue="#{estado.id}" />
+				<f:ajax event="change" execute="@this" render="cidade"
+					listener="#{pessoaBean.carregaCidades}" />
 			</h:selectOneMenu>
-			
-			
+
+			<h:outputLabel for="cidade" value="Cidades:" />
+			<h:selectOneMenu value="#{pessoaBean.pessoa.cidades}" 
+				 requiredMessage="Selecione a cidade" id="cidade">
+				 <f:selectItem itemLabel="Selecione..." noSelectionOption="true" />
+				<f:selectItems value="#{pessoaBean.cidades}" />
+			</h:selectOneMenu>
 
 			<h:outputLabel />
 			<h:panelGroup>
