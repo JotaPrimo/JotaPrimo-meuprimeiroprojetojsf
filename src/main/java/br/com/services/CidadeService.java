@@ -24,7 +24,7 @@ public class CidadeService {
 		List<SelectItem> selectItemsCidades = new ArrayList<SelectItem>();
 		
 		for (Cidades cidade : listaCidades) {
-			selectItemsCidades.add(new SelectItem(cidade.getId(), cidade.getNome()));			
+			selectItemsCidades.add(new SelectItem(cidade, cidade.getNome()));			
 		}
 		
 		return selectItemsCidades;
