@@ -21,6 +21,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
 
@@ -28,7 +29,6 @@ import br.com.dao.DaoGeneric;
 import br.com.entidades.Cidades;
 import br.com.entidades.Estados;
 import br.com.entidades.Pessoa;
-import br.com.jpautil.JPAUtil;
 import br.com.repository.IDaoPessoa;
 import br.com.repository.IDaoPessoaImpl;
 import br.com.services.CidadeService;
@@ -52,8 +52,11 @@ public class PessoaBean implements Serializable {
 	private List<SelectItem> cidades;
 	
 	private PessoaService service = new PessoaService();
+	
+	private Part arquivofoto;
 
 	public String salvar() {
+		System.out.println(arquivofoto);
 		pessoa = daoGeneric.merge(pessoa);
 		carregarPessoas();
 		mostrarMsg("Cadastrado com sucesso!");
@@ -220,6 +223,14 @@ public class PessoaBean implements Serializable {
 	
 	public void setCidades(List<SelectItem> cidades) {
 		this.cidades = cidades;
+	}
+	
+	public Part getArquivofoto() {
+		return arquivofoto;
+	}
+	
+	public void setArquivofoto(Part arquivofoto) {
+		this.arquivofoto = arquivofoto;
 	}
 
 	public void carregaCidades(AjaxBehaviorEvent event) {
