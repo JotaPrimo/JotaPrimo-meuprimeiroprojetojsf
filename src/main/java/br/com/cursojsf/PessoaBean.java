@@ -245,4 +245,6 @@ public class PessoaBean implements Serializable {
 			setCidades(selectItemsCidades);
 		}			
 	}	
+	
+	private byte[] getByte(In)
 }
