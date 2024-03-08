@@ -1,5 +1,7 @@
 package br.com.cursojsf;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -22,6 +24,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
@@ -36,6 +39,7 @@ import br.com.repository.IDaoPessoaImpl;
 import br.com.services.CidadeService;
 import br.com.services.MessageService;
 import br.com.services.PessoaService;
+import jakarta.xml.bind.DatatypeConverter;
 
 @ViewScoped
 @ManagedBean(name = "pessoaBean")
@@ -57,7 +61,38 @@ public class PessoaBean implements Serializable {
 	
 	private Part arquivofoto;
 
-	public String salvar() {
+	public String salvar() throws IOException {
+		/*Processar imagen*/
+		byte[] imagemByte = getByte(arquivofoto.getInputStream());
+		pessoa.setFotoIconBase64Original(imagemByte); // salva imagem original
+		
+		// vamos transformar em miniatura
+		BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagemByte));
+		
+		// pega o tipo da imagem
+		int type = bufferedImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : bufferedImage.getType();
+		
+		int largura = 200;
+		int altura = 200;
+		
+		// bufered image para minatura
+		BufferedImage resizedImage = new BufferedImage(largura, altura, type);
+		Graphics2D g = resizedImage.createGraphics();
+		g.drawImage(bufferedImage, 0,  0,  largura, altura, null);
+		g.dispose();
+		
+		// escrever novamente a imagem
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		String extensao = arquivofoto.getContentType().split("\\/")[1];
+		ImageIO.write(resizedImage, extensao, baos);
+		
+		String miniImagem = "data:" + arquivofoto.getContentType() + ";base64," + 
+				DatatypeConverter.printBase64Binary(baos.toByteArray());
+		
+		/*Processar imagen*/
+		pessoa.setFotoIconBase64(miniImagem);
+		pessoa.setExtensao(extensao);
+		
 		System.out.println(arquivofoto);
 		pessoa = daoGeneric.merge(pessoa);
 		carregarPessoas();

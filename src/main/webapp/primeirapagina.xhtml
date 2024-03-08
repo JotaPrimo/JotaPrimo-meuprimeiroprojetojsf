@@ -37,7 +37,9 @@
 			<h:inputText value="#{pessoaBean.pessoa.nome}"
 				valueChangeListener="#{pessoaBean.mudancaDeValor}" required="true"
 				requiredMessage="Informe nome do usuário"
-				pt:placeholder="Informe o nome do usuário"
+				ondblclick="alert('Clicou duas vezes')"
+				
+				pt:placeholder="Informe o nome do usuário"				
 				validatorMessage="Nome tem que ter no minímo 10 letras">
 				<f:validateLength minimum="10" maximum="50" />
 			</h:inputText>
